@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MUKICHIP V2: DAILY SOLVER - DESIRE</title>
+  
+  <!-- 引入 Google Fonts: Bagel Fat One 与 Baloo Bhaijaan 2 (700 Bold) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Baloo+Bhaijaan+2:wght@700;800&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* 引入 GitHub 仓库同目录下的 FZPangWa.ttf 字体文件 */
+    @font-face {
+      font-family: '方正胖娃_GBK';
+      src: url('FZPangWa.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /* 全局配色变量 */
+    :root {
+      --bg-color: #F8F6F3;        /* 背景颜色 */
+      --main-color: #9B644F;      /* 主线条与主字体棕色 */
+      --accent-color: #FCA125;    /* 答案文字橙色 */
+      --receipt-bg: #FFFDF9;     /* 小票纯净米白背景 */
+      --line-color: #EBD8C1;      /* 细线分割线颜色 */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px 20px 60px;
+      color: var(--main-color);
+      overflow-x: hidden;
+    }
+
+    /* 手机端主容器 */
+    .mobile-container {
+      width: 100%;
+      max-width: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* 1. 最顶部的 Muki DESIRE 打印机出口标牌 (固定在最上层) */
+    .printer-head-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .printer-head-wrapper:active {
+      transform: scale(0.96); /* 按下顶头有轻微按压感 */
+    }
+
+    .printer-img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      display: block;
+    }
+
+    /* 2. 吐票轨道外壳（利用 overflow 实现吐小票动画） */
+    .receipt-slot {
+      width: 100%;
+      max-width: 320px;
+      margin-top: -10px; /* 压在打印机出口下方 */
+      padding-top: 10px;
+      overflow: hidden;
+      z-index: 5;
+    }
+
+    /* 3. 小票主卡片（含两侧缺口） */
+    .receipt-card {
+      width: 100%;
+      background-color: var(--receipt-bg);
+      border: 3px solid var(--main-color);
+      border-radius: 4px 4px 20px 20px;
+      padding: 25px 20px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(155, 100, 79, 0.08);
+
+      /* 吐票平滑滑出动画 */
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.2s ease;
+    }
+
+    /* 吐小票中的动画类 */
+    .receipt-card.printing {
+      animation: printSlide 1.8s cubic-bezier(0.25, 1, 0.3, 1);
+    }
+
+    @keyframes printSlide {
+      0% {
+        transform: translateY(-80%);
+        opacity: 0.3;
+        filter: blur(2px);
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    /* 小票左右两侧圆弧缺口剪裁 */
+    .receipt-card::before, .receipt-card::after {
+      content: "";
+      position: absolute;
+      top: 48%;
+      width: 20px;
+      height: 20px;
+      background-color: var(--bg-color);
+      border: 3px solid var(--main-color);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .receipt-card::before {
+      left: -12px;
+    }
+
+    .receipt-card::after {
+      right: -12px;
+    }
+
+    /* 弧形/弯曲标题: MUKICHIP V2: DAILY SOLVER */
+    .curved-title {
+      font-family: 'Bagel Fat One', cursive, sans-serif;
+      font-size: 16px;
+      color: var(--accent-color);
+      letter-spacing: 0.05em;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    /* 中间购物 Muki 插图 */
+    .shopping-muki-img {
+      width: 140px;
+      height: auto;
+      margin: 5px 0 10px;
+      display: block;
+    }
+
+    /* - MUKI RECEIPT - 标头 */
+    .receipt-header-title {
+      font-family: 'Bagel Fat One', cursive, sans-serif;
+      font-size: 20px;
+      color: var(--main-color);
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    /* 4. 小票元数据信息 (BUYER / TIME / ID) */
+    .receipt-meta {
+      width: 100%;
+      font-family: 'Courier Prime', monospace, sans-serif;
+      font-size: 11px;
+      color: var(--main-color);
+      text-align: left;
+      line-height: 1.6;
+      margin-bottom: 12px;
+      padding: 0 10px;
+      opacity: 0.9;
+    }
+
+    /* 细线分割线 */
+    .divider-line {
+      width: 100%;
+      height: 1px;
+      background-color: var(--line-color);
+      margin: 8px 0;
+    }
+
+    .question-prompt {
+      font-family: 'Courier Prime', monospace, sans-serif;
+      font-size: 12px;
+      color: var(--main-color);
+      letter-spacing: 0.08em;
+      margin: 4px 0;
+      opacity: 0.8;
+    }
+
+    /* 5. 答案核心显示区域 */
+    .answer-container {
+      width: 100%;
+      padding: 18px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 110px;
+    }
+
+    /* 中文答案字体：方正胖娃_GBK (14pt) */
+    .zh-text {
+      font-family: '方正胖娃_GBK', system-ui, sans-serif;
+      color: var(--accent-color);
+      font-size: 15pt;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      word-break: break-word;
+    }
+
+    /* 英文答案字体：Baloo Bhaijaan 2 Bold */
+    .en-text {
+      font-family: 'Baloo Bhaijaan 2', cursive, sans-serif;
+      color: var(--accent-color);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+      text-transform: uppercase;
+      word-break: break-word;
+    }
+
+    /* 6. 条形码与底部印章 */
+    .barcode-img {
+      width: 85%;
+      height: auto;
+      max-height: 45px;
+      margin: 12px 0 15px;
+      object-fit: contain;
+    }
+
+    /* 右下角/底部圆章 (@yuxuantsuki) */
+    .stamp-link {
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.15s ease;
+      margin-top: 5px;
+    }
+
+    .stamp-link:active {
+      transform: scale(0.8);
+    }
+
+    .stamp-img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* 重新打印按钮提示 */
+    .reprint-tip {
+      font-family: 'Bagel Fat One', cursive, sans-serif;
+      font-size: 12px;
+      color: var(--main-color);
+      margin-top: 18px;
+      opacity: 0.6;
+      cursor: pointer;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-container">
+    
+    <!-- 1. 顶部 Muki DESIRE 标牌 (点击可重新吐票) -->
+    <div class="printer-head-wrapper" onclick="printNewReceipt()">
+      <img src="top-desire.png" alt="DESIRE Printer" class="printer-img" onerror="this.src='https://via.placeholder.com/320x100/9B644F/FFFFFF?text=DESIRE+PRINTER'">
+    </div>
+
+    <!-- 2. 小票吐票外壳轨 -->
+    <div class="receipt-slot">
+      <div class="receipt-card" id="receiptCard">
+        
+        <!-- 弧形标题 -->
+        <div class="curved-title">MUKICHIP V2: DAILY SOLVER</div>
+
+        <!-- 购物 Muki 插图 -->
+        <img src="shopping-muki.png" alt="Shopping Muki" class="shopping-muki-img" onerror="this.src='https://via.placeholder.com/140x100/FFFDF9/9B644F?text=MUKI'">
+
+        <!-- 小票标头 -->
+        <div class="receipt-header-title">- MUKI RECEIPT -</div>
+
+        <!-- 小票交易元数据 (动态实时生成) -->
+        <div class="receipt-meta">
+          <div>BUYER: MUKI</div>
+          <div>CHECKOUT TIME: <span id="checkoutTime">2026.10.18 18:14:22</span></div>
+          <div>TRANSACTION ID: <span id="transactionId">553286757320</span></div>
+        </div>
+
+        <div class="divider-line"></div>
+        <div class="question-prompt">TO BUY OR NOT TO BUY?</div>
+        <div class="divider-line"></div>
+
+        <!-- 答案显示区域 -->
+        <div class="answer-container">
+          <p class="zh-text" id="zhDisplay">今天不适合买，等多两天再看看！！</p>
+          <p class="en-text" id="enDisplay">NOT A GOOD DAY TO BUY TODAY. WAIT A COUPLE MORE DAYS AND SEE!!</p>
+        </div>
+
+        <div class="divider-line"></div>
+
+        <!-- 条形码图片 -->
+        <img src="barcode.png" alt="Barcode" class="barcode-img" onerror="this.src='https://via.placeholder.com/240x40/FCA125/FFFDF9?text=|||||||||||||||||||||||||'">
+
+        <!-- 底部 Instagram 盖章按钮 -->
+        <a href="https://www.instagram.com/yuxuantsuki" target="_blank" rel="noopener noreferrer" class="stamp-link">
+          <img src="ig-stamp.png" alt="@yuxuantsuki stamp" class="stamp-img" onerror="this.src='https://via.placeholder.com/90x90/9B644F/FFFFFF?text=@yuxuantsuki'">
+        </a>
+
+      </div>
+    </div>
+
+    <!-- 底部重印小提示 -->
+    <div class="reprint-tip" onclick="printNewReceipt()">[ 贴一贴 / 点击顶部重新审判 ]</div>
+
+  </div>
+
+  <script>
+    /* ========================================================
+       DESIRE 剁手/购物审判决策数据池 (50+ 项精选决策)
+       ======================================================== */
+    const desireDecisions = [
+      {
+        zh: "今天不适合买，等多两天再看看！！",
+        en: "NOT A GOOD DAY TO BUY TODAY. WAIT A COUPLE MORE DAYS AND SEE!!"
+      },
+      {
+        zh: "立刻买！不买今晚肯定睡不着觉！",
+        en: "BUY IT NOW! YOU WON'T SLEEP TONIGHT IF YOU DON'T!"
+      },
+      {
+        zh: "别买了，家里已经有三个同款了！",
+        en: "DON'T BUY IT. YOU ALREADY HAVE THREE OF THESE AT HOME!"
+      },
+      {
+        zh: "去找朋友借钱买，快乐最重要！",
+        en: "BORROW MONEY FROM A FRIEND AND BUY IT. HAPPINESS FIRST!"
+      },
+      {
+        zh: "关掉页面去喝三大杯白开水冷静一下！",
+        en: "CLOSE THE PAGE AND DRINK 3 GLASSES OF WATER TO COOL DOWN!"
+      },
+      {
+        zh: "买买买！赚钱就是用来花的！！",
+        en: "BUY BUY BUY! MONEY IS MEANT TO BE SPENT!!"
+      },
+      {
+        zh: "先放购物车，24小时后再决定！",
+        en: "ADD TO CART FIRST. DECIDE AFTER 24 HOURS!"
+      },
+      {
+        zh: "今天省下这笔钱，周末请自己吃大餐！",
+        en: "SAVE THIS MONEY TODAY AND TREAT YOURSELF TO A FEAST ON THE WEEKEND!"
+      },
+      {
+        zh: "宇宙告诉你：买了这个你会后悔三天的。",
+        en: "THE UNIVERSE TELLS YOU: YOU WILL REGRET THIS FOR THREE DAYS."
+      },
+      {
+        zh: "买吧！这是你今天努力生活的奖励！",
+        en: "BUY IT! IT'S YOUR REWARD FOR WORKING HARD TODAY!"
+      },
+      {
+        zh: "去寻找一个便宜的替代品吧！",
+        en: "GO FIND A CHEAPER ALTERNATIVE INSTEAD!"
+      },
+      {
+        zh: "问问身边的朋友，如果他们说买你就买！",
+        en: "ASK A FRIEND NEARBY. IF THEY SAY BUY, THEN BUY IT!"
+      }
+    ];
+
+    /* ========================================================
+       动态生成实时时间与 12 位交易单号
+       ======================================================== */
+    function updateReceiptMeta() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      // 格式: 2026.10.18 18:14:22
+      document.getElementById('checkoutTime').textContent = `${year}.${month}.${day} ${hours}:${minutes}:${seconds}`;
+
+      // 动态生成 12 位随机 Transaction ID
+      let randomId = '';
+      for (let i = 0; i < 12; i++) {
+        randomId += Math.floor(Math.random() * 10);
+      }
+      document.getElementById('transactionId').textContent = randomId;
+    }
+
+    /* ========================================================
+       2 秒吐票动画与随机审判逻辑
+       ======================================================== */
+    let isPrinting = false;
+
+    function printNewReceipt() {
+      if (isPrinting) return;
+      isPrinting = true;
+
+      const receiptCard = document.getElementById('receiptCard');
+      const zhDisplay = document.getElementById('zhDisplay');
+      const enDisplay = document.getElementById('enDisplay');
+
+      // 触发吐小票动画
+      receiptCard.classList.remove('printing');
+      void receiptCard.offsetWidth; // 触发 reflow 刷新动画
+      receiptCard.classList.add('printing');
+
+      // 动态更新时间与单号
+      updateReceiptMeta();
+
+      // 快速滚动更替文字
+      const duration = 1200;
+      const intervalTime = 60;
+      let elapsedTime = 0;
+
+      const timer = setInterval(() => {
+        const tempIndex = Math.floor(Math.random() * desireDecisions.length);
+        zhDisplay.textContent = desireDecisions[tempIndex].zh;
+        enDisplay.textContent = desireDecisions[tempIndex].en;
+
+        elapsedTime += intervalTime;
+
+        if (elapsedTime >= duration) {
+          clearInterval(timer);
+          
+          // 最终决定
+          const finalIndex = Math.floor(Math.random() * desireDecisions.length);
+          zhDisplay.textContent = desireDecisions[finalIndex].zh;
+          enDisplay.textContent = desireDecisions[finalIndex].en;
+
+          isPrinting = false;
+        }
+      }, intervalTime);
+    }
+
+    // 页面首次加载时自动生成元数据
+    window.onload = function() {
+      updateReceiptMeta();
+    };
+  </script>
+</body>
+</html>

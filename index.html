@@ -24,7 +24,7 @@
       --bg-color: #ffffff;        /* 整体背景颜色：纯白 */
       --main-brown: #926653;      /* 指定褐色文字颜色 */
       --accent-orange: #EEA445;   /* 指定橙色文字与线条颜色 */
-      --receipt-bg: #F8F6F3;     /* 小票主体背景颜色 */
+      --receipt-bg: #F8F6F3;     /* 指定小票主体背景颜色 */
     }
 
     * {
@@ -35,7 +35,7 @@
     }
 
     body {
-      background-color: var(--bg-color);
+      background-color: var(--bg-color); /* 纯白背景 */
       font-family: system-ui, -apple-system, sans-serif;
       display: flex;
       justify-content: center;
@@ -56,7 +56,7 @@
       position: relative;
     }
 
-    /* 1. 顶部 Muki DESIRE 打印机出口标牌 */
+    /* 1. 顶部 Muki DESIRE 标牌 */
     .printer-head-wrapper {
       width: 100%;
       display: flex;
@@ -77,100 +77,75 @@
       display: block;
     }
 
-    /* 2. 小票吐票外壳轨道 (用于剪裁吐小票动画) */
+    /* 2. 小票吐票外壳轨道 */
     .receipt-slot {
       width: 100%;
       margin-top: -8px;
-      padding-top: 8px;
-      padding-bottom: 8px;
       overflow: hidden;
       z-index: 5;
     }
 
-    /* 3. 小票主卡片 (无外框线条，带有平滑 2 秒吐票动画) */
+    /* 3. 小票主卡片 (背景 #F8F6F3，无外框线条) */
     .receipt-card {
       width: 100%;
       background-color: var(--receipt-bg);
       border: none;
-      padding: 22px 18px 25px;
+      border-radius: 0 0 16px 16px;
+      padding: 20px 18px 25px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       position: relative;
-      transform: translateY(0);
+
+      /* 吐票平滑滑出动画 */
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.2s ease;
     }
 
-    /* 2 秒平滑拉伸吐票动画 */
+    /* 吐小票中的动画类 */
     .receipt-card.printing {
-      animation: printSlideDown 2.0s cubic-bezier(0.25, 0.8, 0.25, 1);
+      animation: printSlide 1.8s cubic-bezier(0.25, 1, 0.3, 1);
     }
 
-    @keyframes printSlideDown {
+    @keyframes printSlide {
       0% {
-        transform: translateY(-100%);
-        opacity: 0.2;
-      }
-      20% {
-        opacity: 1;
+        transform: translateY(-80%);
+        opacity: 0.3;
+        filter: blur(2px);
       }
       100% {
         transform: translateY(0);
         opacity: 1;
+        filter: blur(0);
       }
     }
 
-    /* 上锯齿边缘 */
-    .zigzag-top {
-      position: absolute;
-      top: -8px;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background: linear-gradient(135deg, transparent 50%, var(--receipt-bg) 50%),
-                  linear-gradient(225deg, transparent 50%, var(--receipt-bg) 50%);
-      background-size: 12px 8px;
-      background-repeat: repeat-x;
-    }
-
-    /* 下锯齿边缘 */
-    .zigzag-bottom {
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background: linear-gradient(45deg, transparent 50%, var(--receipt-bg) 50%),
-                  linear-gradient(315deg, transparent 50%, var(--receipt-bg) 50%);
-      background-size: 12px 8px;
-      background-repeat: repeat-x;
-    }
-
-    /* 左右侧半圆缺口剪裁 */
-    .side-notch-left, .side-notch-right {
+    /* 小票左右两侧半圆缺口（与背景 #ffffff 保持一致） */
+    .receipt-card::before, .receipt-card::after {
+      content: "";
       position: absolute;
       top: 42%;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       background-color: var(--bg-color);
       border-radius: 50%;
-      z-index: 6;
+      z-index: 2;
     }
 
-    .side-notch-left {
-      left: -9px;
+    .receipt-card::before {
+      left: -10px;
     }
 
-    .side-notch-right {
-      right: -9px;
+    .receipt-card::after {
+      right: -10px;
     }
 
-    /* 弧形标题: MUKICHIP V2: DAILY SOLVER (字间距 +50) */
+    /* 弧形标题: MUKICHIP V2: DAILY SOLVER */
     .curved-title {
       font-family: 'Bagel Fat One', cursive, sans-serif;
       font-size: 17px;
       color: var(--accent-orange);
-      letter-spacing: 0.05em; /* 字间距 +50 */
+      letter-spacing: 0.05em;
       margin-top: 5px;
       margin-bottom: 8px;
       text-transform: uppercase;
@@ -184,12 +159,12 @@
       display: block;
     }
 
-    /* - MUKI RECEIPT - 标头 (字间距 +50) */
+    /* - MUKI RECEIPT - 标头 */
     .receipt-header-title {
       font-family: 'Bagel Fat One', cursive, sans-serif;
       font-size: 20px;
       color: var(--main-brown);
-      letter-spacing: 0.05em; /* 字间距 +50 */
+      letter-spacing: 0.05em;
       margin-bottom: 12px;
     }
 
@@ -272,7 +247,7 @@
       object-fit: contain;
     }
 
-    /* 底部印章按钮 (跳转 IG) */
+    /* 底部印章按钮 (点击跳转到 Instagram) */
     .stamp-link {
       text-decoration: none;
       display: inline-block;
@@ -296,8 +271,7 @@
       font-family: 'Bagel Fat One', cursive, sans-serif;
       font-size: 12px;
       color: var(--main-brown);
-      letter-spacing: 0.05em; /* 字间距 +50 */
-      margin-top: 22px;
+      margin-top: 18px;
       opacity: 0.5;
       cursor: pointer;
       user-select: none;
@@ -308,7 +282,7 @@
 
   <div class="mobile-container">
     
-    <!-- 1. 顶部 Muki DESIRE 标牌 (点击触发 2 秒吐票动画) -->
+    <!-- 1. 顶部 Muki DESIRE 标牌 (点击触发重新打印) -->
     <div class="printer-head-wrapper" onclick="printNewReceipt()">
       <img src="top-desire.png" alt="DESIRE Printer" class="printer-img" onerror="this.src='https://via.placeholder.com/340x90/926653/FFFFFF?text=TOP+PRINTER+PNG'">
     </div>
@@ -316,12 +290,6 @@
     <!-- 2. 小票吐票外壳轨道 -->
     <div class="receipt-slot">
       <div class="receipt-card" id="receiptCard">
-        
-        <!-- 上锯齿边缘 -->
-        <div class="zigzag-top"></div>
-        <!-- 左右圆弧缺口 -->
-        <div class="side-notch-left"></div>
-        <div class="side-notch-right"></div>
         
         <!-- 弧形标题 -->
         <div class="curved-title">MUKICHIP V2: DAILY SOLVER</div>
@@ -332,15 +300,15 @@
         <!-- 小票标头 -->
         <div class="receipt-header-title">- MUKI RECEIPT -</div>
 
-        <!-- 小票元数据 (靠左对齐，秒级实时动态抓取) -->
+        <!-- 小票元数据 (靠左对齐，Liyu Shoushu 字体) -->
         <div class="receipt-meta">
           <div>BUYER: MUKI</div>
-          <div>CHECKOUT TIME: <span id="checkoutTime">2026-10-18 14:30:05</span></div>
+          <div>CHECKOUT TIME: <span id="checkoutTime">2026.11.22 20:29:24</span></div>
           <div>TRANSACTION ID: <span id="transactionId">55328675732096</span></div>
         </div>
 
         <div class="divider-line"></div>
-        <!-- 提示问题 (靠左对齐) -->
+        <!-- 提示问题 (靠左对齐，Liyu Shoushu 字体) -->
         <div class="question-prompt">TO BUY OR NOT TO BUY?</div>
         <div class="divider-line"></div>
 

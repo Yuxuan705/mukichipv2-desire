@@ -168,7 +168,7 @@
       margin-bottom: 12px;
     }
 
-    /* 4. 小票元数据信息 (靠左对齐，Liyu Shoushu 字体) */
+    /* 4. 小票元数据信息 (靠左对齐) */
     .receipt-meta {
       width: 100%;
       font-family: 'Liyu Shoushu', cursive, sans-serif;
@@ -247,7 +247,7 @@
       object-fit: contain;
     }
 
-    /* 底部印章按钮 (点击跳转到 Instagram) */
+    /* 底部印章按钮 (跳转 IG) */
     .stamp-link {
       text-decoration: none;
       display: inline-block;
@@ -282,7 +282,7 @@
 
   <div class="mobile-container">
     
-    <!-- 1. 顶部 Muki DESIRE 标牌 (点击触发重新打印) -->
+    <!-- 1. 顶部 Muki DESIRE 标牌 (点击重新生成) -->
     <div class="printer-head-wrapper" onclick="printNewReceipt()">
       <img src="top-desire.png" alt="DESIRE Printer" class="printer-img" onerror="this.src='https://via.placeholder.com/340x90/926653/FFFFFF?text=TOP+PRINTER+PNG'">
     </div>
@@ -300,7 +300,7 @@
         <!-- 小票标头 -->
         <div class="receipt-header-title">- MUKI RECEIPT -</div>
 
-        <!-- 小票元数据 (靠左对齐，Liyu Shoushu 字体) -->
+        <!-- 小票元数据 (靠左对齐) -->
         <div class="receipt-meta">
           <div>BUYER: MUKI</div>
           <div>CHECKOUT TIME: <span id="checkoutTime">2026.11.22 20:29:24</span></div>
@@ -308,10 +308,10 @@
         </div>
 
         <div class="divider-line"></div>
-        <!-- 提示问题 (靠左对齐，Liyu Shoushu 字体) -->
+        <!-- 提示问题 (靠左对齐) -->
         <div class="question-prompt">TO BUY OR NOT TO BUY?</div>
         <div class="divider-line"></div>
 
-        <!-- 答案显示区域 (靠左对齐，Liyu Shoushu 字体) -->
+        <!-- 答案显示区域 (靠左对齐) -->
         <div class="answer-container">
           <p class="zh-text" id="zhDisplay">今天不适合买，首先，您需要连接至 Workspace，以打开该扩展。

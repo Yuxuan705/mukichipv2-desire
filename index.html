@@ -591,8 +591,8 @@
 
             <!-- 6. Decision Result (Chinese & English) -->
             <div class="decision-content">
-              <div class="decision-zh" id="decisionZh">今天不适合买，<br>等多两天再看看!!</div>
-              <div class="decision-en" id="decisionEn">NOT A GOOD DAY TO BUY TODAY.<br>WAIT A COUPLE MORE DAYS AND SEE!!</div>
+              <div class="decision-zh" id="decisionZh">今天不适合买，等多两天再看看!!</div>
+              <div class="decision-en" id="decisionEn">NOT A GOOD DAY TO BUY TODAY. WAIT A COUPLE MORE DAYS AND SEE!!</div>
             </div>
 
             <!-- 7. Barcode with 1.5px Orange Lines & 20px spacing -->
@@ -638,175 +638,175 @@
 
   <script>
     /* =========================================================
-       40 Desire Decisions List
+       40 Desire Decisions List (Natural wrapping, no \n)
        ========================================================= */
     const desireDecisions = [
       // 1-10: 理智防剁手 / 劝退篇
       {
-        zh: "今天不适合买，\n等多两天再看看!!",
-        en: "NOT A GOOD DAY TO BUY TODAY.\nWAIT A COUPLE MORE DAYS AND SEE!!"
+        zh: "今天不适合买，等多两天再看看!!",
+        en: "NOT A GOOD DAY TO BUY TODAY. WAIT A COUPLE MORE DAYS AND SEE!!"
       },
       {
-        zh: "别买了，\n家里已经有三个同款在灰尘里哭了！",
-        en: "DON'T BUY IT.\nYOU ALREADY HAVE THREE OF THESE DUSTY AT HOME!"
+        zh: "别买了，家里已经有三个同款在灰尘里哭了！",
+        en: "DON'T BUY IT. YOU ALREADY HAVE THREE OF THESE DUSTY AT HOME!"
       },
       {
-        zh: "关掉页面\n去喝三大杯白开水冷静一下！",
-        en: "CLOSE THE PAGE\nAND DRINK 3 GLASSES OF WATER TO COOL DOWN!"
+        zh: "关掉页面去喝三大杯白开水冷静一下！",
+        en: "CLOSE THE PAGE AND DRINK 3 GLASSES OF WATER TO COOL DOWN!"
       },
       {
-        zh: "宇宙告诉你：\n买了这个你会后悔三天的。",
-        en: "THE UNIVERSE TELLS YOU:\nYOU WILL REGRET THIS FOR THREE DAYS."
+        zh: "宇宙告诉你：买了这个你会后悔三天的。",
+        en: "THE UNIVERSE TELLS YOU: YOU WILL REGRET THIS FOR THREE DAYS."
       },
       {
-        zh: "先放购物车，\n24小时后再来看它还在不在！",
-        en: "ADD TO CART FIRST.\nSEE IF YOU STILL WANT IT IN 24 HOURS!"
+        zh: "先放购物车，24小时后再来看它还在不在！",
+        en: "ADD TO CART FIRST. SEE IF YOU STILL WANT IT IN 24 HOURS!"
       },
       {
-        zh: "这不是你需要的，\n这只是你此刻太无聊了！",
-        en: "YOU DON'T NEED THIS,\nYOU ARE JUST BORED RIGHT NOW!"
+        zh: "这不是你需要的，这只是你此刻太无聊了！",
+        en: "YOU DON'T NEED THIS, YOU ARE JUST BORED RIGHT NOW!"
       },
       {
-        zh: "省下这笔钱，\n周末请自己吃顿大餐不香吗？",
-        en: "SAVE THIS MONEY AND TREAT YOURSELF\nTO A FEAST THIS WEEKEND!"
+        zh: "省下这笔钱，周末请自己吃顿大餐不香吗？",
+        en: "SAVE THIS MONEY AND TREAT YOURSELF TO A FEAST THIS WEEKEND!"
       },
       {
-        zh: "看看你的银行卡余额，\n它正在默默流泪！",
-        en: "CHECK YOUR BANK BALANCE,\nIT IS CRYING SILENTLY!"
+        zh: "看看你的银行卡余额，它正在默默流泪！",
+        en: "CHECK YOUR BANK BALANCE, IT IS CRYING SILENTLY!"
       },
       {
-        zh: "买回去也是占地方，\n给家里留点空间吧！",
-        en: "IT WILL JUST TAKE UP SPACE.\nLEAVE SOME ROOM AT HOME!"
+        zh: "买回去也是占地方，给家里留点空间吧！",
+        en: "IT WILL JUST TAKE UP SPACE. LEAVE SOME ROOM AT HOME!"
       },
       {
-        zh: "忍住！\n下个月交账单的时候你会感谢今天的自己！",
-        en: "RESIST!\nYOUR FUTURE SELF WILL THANK YOU AT BILL TIME!"
+        zh: "忍住！下个月交账单的时候你会感谢今天的自己！",
+        en: "RESIST! YOUR FUTURE SELF WILL THANK YOU AT BILL TIME!"
       },
 
       // 11-20: 爽快剁手 / 鼓励篇
       {
-        zh: "立刻买！\n不买今晚肯定睡不着觉！",
-        en: "BUY IT NOW!\nYOU WON'T SLEEP TONIGHT IF YOU DON'T!"
+        zh: "立刻买！不买今晚肯定睡不着觉！",
+        en: "BUY IT NOW! YOU WON'T SLEEP TONIGHT IF YOU DON'T!"
       },
       {
-        zh: "买买买！\n赚钱就是用来犒赏自己的！！",
-        en: "BUY BUY BUY!\nMONEY IS MEANT TO REWARD YOURSELF!!"
+        zh: "买买买！赚钱就是用来犒赏自己的！！",
+        en: "BUY BUY BUY! MONEY IS MEANT TO REWARD YOURSELF!!"
       },
       {
-        zh: "买吧！\n这是你今天努力生活的专属奖励！",
-        en: "BUY IT!\nIT'S YOUR EXCLUSIVE REWARD FOR WORKING HARD TODAY!"
+        zh: "买吧！这是你今天努力生活的专属奖励！",
+        en: "BUY IT! IT'S YOUR EXCLUSIVE REWARD FOR WORKING HARD TODAY!"
       },
       {
-        zh: "快乐无价！\n遇到喜欢的就直接拿下！",
-        en: "HAPPINESS IS PRICELESS!\nGRAB IT WHEN YOU LIKE IT!"
+        zh: "快乐无价！遇到喜欢的就直接拿下！",
+        en: "HAPPINESS IS PRICELESS! GRAB IT WHEN YOU LIKE IT!"
       },
       {
-        zh: "犹豫就会败北，\n喜欢就现在下单！",
-        en: "HESITATION LEADS TO DEFEAT.\nORDER IT RIGHT NOW!"
+        zh: "犹豫就会败北，喜欢就现在下单！",
+        en: "HESITATION LEADS TO DEFEAT. ORDER IT RIGHT NOW!"
       },
       {
-        zh: "钱没有离开你，\n只是换了一种方式陪着你！",
-        en: "MONEY ISN'T GONE,\nIT JUST CAME BACK IN ANOTHER FORM!"
+        zh: "钱没有离开你，只是换了一种方式陪着你！",
+        en: "MONEY ISN'T GONE, IT JUST CAME BACK IN ANOTHER FORM!"
       },
       {
-        zh: "这件东西写着你的名字，\n快带它回家！",
-        en: "THIS HAS YOUR NAME WRITTEN ON IT.\nTAKE IT HOME!"
+        zh: "这件东西写着你的名字，快带它回家！",
+        en: "THIS HAS YOUR NAME WRITTEN ON IT. TAKE IT HOME!"
       },
       {
-        zh: "生活已经够苦了，\n买个小礼物甜一下吧！",
-        en: "LIFE IS HARD ENOUGH,\nSWEETEN IT WITH A LITTLE GIFT!"
+        zh: "生活已经够苦了，买个小礼物甜一下吧！",
+        en: "LIFE IS HARD ENOUGH, SWEETEN IT WITH A LITTLE GIFT!"
       },
       {
-        zh: "帮你算了一下账，\n买了这个你依然是个小富翁！",
-        en: "DID THE MATH,\nYOU ARE STILL RICH EVEN AFTER BUYING THIS!"
+        zh: "帮你算了一下账，买了这个你依然是个小富翁！",
+        en: "DID THE MATH, YOU ARE STILL RICH EVEN AFTER BUYING THIS!"
       },
       {
-        zh: "准许通关！\n此乃提升幸福感之必备神兵！",
-        en: "APPROVED!\nTHIS IS AN ESSENTIAL ITEM FOR YOUR HAPPINESS!"
+        zh: "准许通关！此乃提升幸福感之必备神兵！",
+        en: "APPROVED! THIS IS AN ESSENTIAL ITEM FOR YOUR HAPPINESS!"
       },
 
       // 21-30: 搞笑与戏剧性决策篇
       {
-        zh: "抛硬币决定吧，\n正面买，反面再抛一次！",
-        en: "FLIP A COIN!\nHEADS BUY, TAILS FLIP AGAIN!"
+        zh: "抛硬币决定吧，正面买，反面再抛一次！",
+        en: "FLIP A COIN! HEADS BUY, TAILS FLIP AGAIN!"
       },
       {
-        zh: "去找朋友借钱买，\n要穷大家一起穷！",
-        en: "BORROW MONEY FROM A FRIEND,\nLET'S BE BROKE TOGETHER!"
+        zh: "去找朋友借钱买，要穷大家一起穷！",
+        en: "BORROW MONEY FROM A FRIEND, LET'S BE BROKE TOGETHER!"
       },
       {
-        zh: "问问身边的朋友，\n如果他们说买你就买！",
-        en: "ASK A FRIEND NEARBY.\nIF THEY SAY BUY, THEN BUY IT!"
+        zh: "问问身边的朋友，如果他们说买你就买！",
+        en: "ASK A FRIEND NEARBY. IF THEY SAY BUY, THEN BUY IT!"
       },
       {
-        zh: "今天不买，\n但允许你吃个冰淇淋做补偿！",
-        en: "NO BUYING TODAY,\nBUT YOU GET AN ICE CREAM AS A PRIZE!"
+        zh: "今天不买，但允许你吃个冰淇淋做补偿！",
+        en: "NO BUYING TODAY, BUT YOU GET AN ICE CREAM AS A PRIZE!"
       },
       {
-        zh: "闭上眼睛数到十，\n如果还想买就下单！",
-        en: "CLOSE YOUR EYES AND COUNT TO 10.\nIF YOU STILL WANT IT, BUY IT!"
+        zh: "闭上眼睛数到十，如果还想买就下单！",
+        en: "CLOSE YOUR EYES AND COUNT TO 10. IF YOU STILL WANT IT, BUY IT!"
       },
       {
-        zh: "判决：不买！\n罚你去吃一碗热腾腾的泡面！",
-        en: "VERDICT: NO!\nPENALTY IS EATING A BOWL OF HOT RAMEN!"
+        zh: "判决：不买！罚你去吃一碗热腾腾的泡面！",
+        en: "VERDICT: NO! PENALTY IS EATING A BOWL OF HOT RAMEN!"
       },
       {
-        zh: "看看明天的天气，\n如果是晴天就买，下雨就算了！",
-        en: "CHECK THE WEATHER TOMORROW:\nBUY IF SUNNY, SKIP IF RAINY!"
+        zh: "看看明天的天气，如果是晴天就买，下雨就算了！",
+        en: "CHECK THE WEATHER TOMORROW: BUY IF SUNNY, SKIP IF RAINY!"
       },
       {
-        zh: "再按一次！\n宇宙刚才信号不好没想清楚！",
-        en: "TAP AGAIN!\nTHE UNIVERSE HAD BAD SIGNAL JUST NOW!"
+        zh: "再按一次！宇宙刚才信号不好没想清楚！",
+        en: "TAP AGAIN! THE UNIVERSE HAD BAD SIGNAL JUST NOW!"
       },
       {
-        zh: "去找找有没有二手或者打折的，\n省一点是一点！",
-        en: "LOOK FOR A SECOND-HAND OR DISCOUNTED ONE\nTO SAVE A BIT!"
+        zh: "去找找有没有二手或者打折的，省一点是一点！",
+        en: "LOOK FOR A SECOND-HAND OR DISCOUNTED ONE TO SAVE A BIT!"
       },
       {
-        zh: "把它截图发给闺蜜/兄弟，\n超过两个人赞同就买！",
-        en: "SEND A SCREENSHOT TO FRIENDS.\nBUY IF 2 PEOPLE AGREE!"
+        zh: "把它截图发给闺蜜/兄弟，超过两个人赞同就买！",
+        en: "SEND A SCREENSHOT TO FRIENDS. BUY IF 2 PEOPLE AGREE!"
       },
 
       // 31-40: 缓兵之计与生活调剂篇
       {
-        zh: "去把房间收拾干净，\n如果收拾完还想买就买！",
-        en: "CLEAN YOUR ROOM FIRST.\nIF YOU STILL WANT IT AFTER, BUY IT!"
+        zh: "去把房间收拾干净，如果收拾完还想买就买！",
+        en: "CLEAN YOUR ROOM FIRST. IF YOU STILL WANT IT AFTER, BUY IT!"
       },
       {
-        zh: "给自己半小时时间，\n去洗个热水澡冷静一下！",
-        en: "GIVE YOURSELF HALF AN HOUR\nAND TAKE A SHOWER TO COOL OFF!"
+        zh: "给自己半小时时间，去洗个热水澡冷静一下！",
+        en: "GIVE YOURSELF HALF AN HOUR AND TAKE A SHOWER TO COOL OFF!"
       },
       {
-        zh: "判决：准许购买！\n但接下来三天只准吃小吃！",
-        en: "VERDICT: PERMITTED!\nBUT ONLY EAT SNACKS FOR THE NEXT 3 DAYS!"
+        zh: "判决：准许购买！但接下来三天只准吃小吃！",
+        en: "VERDICT: PERMITTED! BUT ONLY EAT SNACKS FOR THE NEXT 3 DAYS!"
       },
       {
-        zh: "恭喜你获得“理智守护卡”，\n今天成功保住了钱包！",
-        en: "CONGRATS!\nYOU GOT THE 'SANITY SHIELD', WALLET SAVED TODAY!"
+        zh: "恭喜你获得“理智守护卡”，今天成功保住了钱包！",
+        en: "CONGRATS! YOU GOT THE 'SANITY SHIELD', WALLET SAVED TODAY!"
       },
       {
-        zh: "算了吧，\n你的冲动消费指数现在高达 99%！",
-        en: "FORGET IT,\nYOUR IMPULSE BUYING INDEX IS AT 99%!"
+        zh: "算了吧，你的冲动消费指数现在高达 99%！",
+        en: "FORGET IT, YOUR IMPULSE BUYING INDEX IS AT 99%!"
       },
       {
-        zh: "现在的你只是太累了，\n快去睡个好觉！",
-        en: "YOU ARE JUST EXHAUSTED RIGHT NOW.\nGO GET A GOOD SLEEP!"
+        zh: "现在的你只是太累了，快去睡个好觉！",
+        en: "YOU ARE JUST EXHAUSTED RIGHT NOW. GO GET A GOOD SLEEP!"
       },
       {
-        zh: "今天的钱包防线非常稳固，\n不准破防！",
-        en: "YOUR WALLET DEFENSE IS STRONG TODAY,\nDON'T BREAK IT!"
+        zh: "今天的钱包防线非常稳固，不准破防！",
+        en: "YOUR WALLET DEFENSE IS STRONG TODAY, DON'T BREAK IT!"
       },
       {
-        zh: "把它加入收藏夹，\n然后彻底忘记它的存在！",
-        en: "BOOKMARK IT,\nTHEN FORGET IT EVER EXISTED!"
+        zh: "把它加入收藏夹，然后彻底忘记它的存在！",
+        en: "BOOKMARK IT, THEN FORGET IT EVER EXISTED!"
       },
       {
-        zh: "如果这件东西能用超过一年，\n那就果断拿下！",
-        en: "IF YOU WILL USE THIS FOR OVER A YEAR,\nGO GET IT!"
+        zh: "如果这件东西能用超过一年，那就果断拿下！",
+        en: "IF YOU WILL USE THIS FOR OVER A YEAR, GO GET IT!"
       },
       {
-        zh: "先去跑个步或者散个步，\n回来你就不想买了！",
-        en: "GO FOR A RUN OR WALK FIRST.\nYOU WON'T WANT IT AFTER!"
+        zh: "先去跑个步或者散个步，回来你就不想买了！",
+        en: "GO FOR A RUN OR WALK FIRST. YOU WON'T WANT IT AFTER!"
       }
     ];
 
@@ -983,8 +983,8 @@
       // Update receipt text
       checkoutTimeEl.textContent = getCurrentFormattedTime();
       transactionIdEl.textContent = generateTransactionId();
-      decisionZhEl.innerHTML = decision.zh.replace(/\n/g, '<br>');
-      decisionEnEl.innerHTML = decision.en.replace(/\n/g, '<br>');
+      decisionZhEl.textContent = decision.zh;
+      decisionEnEl.textContent = decision.en;
 
       // Start sound & printer shaking
       playThermalPrinterSound(2000);

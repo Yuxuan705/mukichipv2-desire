@@ -273,12 +273,12 @@
        ========================================================= */
     
     /* 1. Curved Title: MUKICHIP V2: DAILY SOLVER
-          Gentle arc, close to shopping-muki */
+          Gentle arc, with comfortable distance to shopping-muki */
     .curved-title-container {
       width: 100%;
       height: 52px;
       margin-top: 4px;
-      margin-bottom: -15px; /* Closer to shopping-muki */
+      margin-bottom: 6px; /* Increased breathing room to shopping-muki */
       position: relative;
       z-index: 10;
       display: flex;
@@ -294,7 +294,7 @@
     .curved-title-svg text {
       font-family: var(--font-bagel);
       fill: var(--color-orange);
-      font-size: 17.5px;
+      font-size: 17px;
       letter-spacing: 2px;
       text-anchor: middle;
       dominant-baseline: central;
@@ -312,27 +312,29 @@
       pointer-events: none;
     }
 
-    /* 3. Subtitle: - MUKI RECEIPT - */
+    /* 3. Subtitle: - MUKI RECEIPT - (Strictly single line, nowrap) */
     .receipt-title {
       font-family: var(--font-bagel);
       color: var(--color-brown);
-      font-size: 18px;
-      letter-spacing: 2.5px;
+      font-size: 16.5px;
+      letter-spacing: 2px;
       margin-bottom: 16px;
       text-transform: uppercase;
+      white-space: nowrap; /* Strictly on one row without line breaks */
     }
 
     /* 4. Metadata Details (Buyer, Checkout Time, Transaction ID)
-          Indented 5px from lines on both sides, 15px gap to line below */
+          English text uniform 11.5px, normal weight, 12px gap to line below */
     .receipt-meta {
       width: 100%;
       text-align: left;
       font-family: var(--font-liyu);
       font-size: 11.5px;
+      font-weight: normal;
       color: var(--color-brown);
       line-height: 1.65;
-      margin-bottom: 15px; /* 15px gap to the line below */
-      padding: 0 5px;     /* 5px indent relative to lines */
+      margin-bottom: 12px; /* 12px gap to the orange line below */
+      padding: 0 5px;      /* 5px indent relative to lines */
       letter-spacing: 0.8px;
       text-transform: uppercase;
     }
@@ -345,17 +347,17 @@
     }
 
     .receipt-meta-label {
-      font-weight: bold;
+      font-weight: normal; /* Normal weight, no bold */
       margin-right: 6px;
       white-space: nowrap;
     }
 
     /* 5. TO BUY OR NOT TO BUY?
           Orange #FCA125, 1.5px thickness, border-radius 999px
-          Text indented 5px from lines, 10px spacing above & below, 15px gap to decision below */
+          English text uniform 11.5px, normal weight, 12px gap to Chinese text below */
     .decision-divider-container {
       width: 100%;
-      margin: 0 0 15px;    /* 15px gap to decision text below */
+      margin: 0 0 12px;    /* 12px gap to Chinese text below */
       display: flex;
       flex-direction: column;
       align-items: stretch;
@@ -370,10 +372,10 @@
 
     .decision-header-text {
       font-family: var(--font-liyu);
-      font-size: 11.5px;
+      font-size: 11.5px;   /* Uniform 11.5px */
+      font-weight: normal; /* Normal weight, no bold */
       letter-spacing: 1.5px;
       color: var(--color-brown);
-      font-weight: bold;
       text-transform: uppercase;
       text-align: left;
       margin-top: 10px;    /* 10px spacing from upper line */
@@ -383,11 +385,11 @@
     }
 
     /* 6. Decision Result Text (Chinese & English)
-          Indented 5px from lines, 15px gap to barcode line below */
+          Chinese text normal weight (no bold), English text uniform 11.5px, 12px gap to barcode line below */
     .decision-content {
       width: 100%;
       text-align: left;
-      margin-bottom: 15px; /* 15px gap to barcode line below */
+      margin-bottom: 12px; /* 12px gap to barcode upper line below */
       padding: 0 5px;      /* 5px indent relative to lines */
       min-height: 75px;
     }
@@ -396,7 +398,7 @@
       font-family: var(--font-liyu);
       color: var(--color-brown);
       font-size: 20px;
-      font-weight: 800;
+      font-weight: normal; /* Normal weight, no extra bold */
       line-height: 1.45;
       letter-spacing: 1.2px;
       margin-bottom: 8px;
@@ -406,7 +408,7 @@
     .decision-en {
       font-family: var(--font-liyu);
       color: var(--color-brown);
-      font-size: 10.5px;
+      font-size: 11.5px;   /* Uniform 11.5px */
       font-weight: normal;
       line-height: 1.4;
       letter-spacing: 0.8px;
@@ -534,10 +536,10 @@
         
         <div class="receipt" id="receiptPaper">
           
-          <!-- Top Jagged / Zigzag Torn Edge -->
+          <!-- Top Rounded Scalloped Torn Edge -->
           <div class="receipt-zigzag-top">
             <svg viewBox="0 0 320 10" preserveAspectRatio="none" class="zigzag-svg">
-              <polygon points="0,10 5,0 10,10 15,0 20,10 25,0 30,10 35,0 40,10 45,0 50,10 55,0 60,10 65,0 70,10 75,0 80,10 85,0 90,10 95,0 100,10 105,0 110,10 115,0 120,10 125,0 130,10 135,0 140,10 145,0 150,10 155,0 160,10 165,0 170,10 175,0 180,10 185,0 190,10 195,0 200,10 205,0 210,10 215,0 220,10 225,0 230,10 235,0 240,10 245,0 250,10 255,0 260,10 265,0 270,10 275,0 280,10 285,0 290,10 295,0 300,10 305,0 310,10 315,0 320,10" fill="#F8F6F3" />
+              <path d="M 0,10 C 2.5,1.5 7.5,1.5 10.0,10 C 12.5,1.5 17.5,1.5 20.0,10 C 22.5,1.5 27.5,1.5 30.0,10 C 32.5,1.5 37.5,1.5 40.0,10 C 42.5,1.5 47.5,1.5 50.0,10 C 52.5,1.5 57.5,1.5 60.0,10 C 62.5,1.5 67.5,1.5 70.0,10 C 72.5,1.5 77.5,1.5 80.0,10 C 82.5,1.5 87.5,1.5 90.0,10 C 92.5,1.5 97.5,1.5 100.0,10 C 102.5,1.5 107.5,1.5 110.0,10 C 112.5,1.5 117.5,1.5 120.0,10 C 122.5,1.5 127.5,1.5 130.0,10 C 132.5,1.5 137.5,1.5 140.0,10 C 142.5,1.5 147.5,1.5 150.0,10 C 152.5,1.5 157.5,1.5 160.0,10 C 162.5,1.5 167.5,1.5 170.0,10 C 172.5,1.5 177.5,1.5 180.0,10 C 182.5,1.5 187.5,1.5 190.0,10 C 192.5,1.5 197.5,1.5 200.0,10 C 202.5,1.5 207.5,1.5 210.0,10 C 212.5,1.5 217.5,1.5 220.0,10 C 222.5,1.5 227.5,1.5 230.0,10 C 232.5,1.5 237.5,1.5 240.0,10 C 242.5,1.5 247.5,1.5 250.0,10 C 252.5,1.5 257.5,1.5 260.0,10 C 262.5,1.5 267.5,1.5 270.0,10 C 272.5,1.5 277.5,1.5 280.0,10 C 282.5,1.5 287.5,1.5 290.0,10 C 292.5,1.5 297.5,1.5 300.0,10 C 302.5,1.5 307.5,1.5 310.0,10 C 312.5,1.5 317.5,1.5 320.0,10 L 320,10 L 0,10 Z" fill="#F8F6F3" />
             </svg>
           </div>
 
@@ -607,10 +609,10 @@
 
           </div>
 
-          <!-- Bottom Jagged / Zigzag Torn Edge -->
+          <!-- Bottom Rounded Scalloped Torn Edge -->
           <div class="receipt-zigzag-bottom">
             <svg viewBox="0 0 320 10" preserveAspectRatio="none" class="zigzag-svg">
-              <polygon points="0,0 5,10 10,0 15,10 20,0 25,10 30,0 35,10 40,0 45,10 50,0 55,10 60,0 65,10 70,0 75,10 80,0 85,10 90,0 95,10 100,0 105,10 110,0 115,10 120,0 125,10 130,0 135,10 140,0 145,10 150,0 155,10 160,0 165,10 170,0 175,10 180,0 185,10 190,0 195,10 200,0 205,10 210,0 215,10 220,0 225,10 230,0 235,10 240,0 245,10 250,0 255,10 260,0 265,10 270,0 275,10 280,0 285,10 290,0 295,10 300,0 305,10 310,0 315,10 320,0" fill="#F8F6F3" />
+              <path d="M 0,0 C 2.5,8.5 7.5,8.5 10.0,0 C 12.5,8.5 17.5,8.5 20.0,0 C 22.5,8.5 27.5,8.5 30.0,0 C 32.5,8.5 37.5,8.5 40.0,0 C 42.5,8.5 47.5,8.5 50.0,0 C 52.5,8.5 57.5,8.5 60.0,0 C 62.5,8.5 67.5,8.5 70.0,0 C 72.5,8.5 77.5,8.5 80.0,0 C 82.5,8.5 87.5,8.5 90.0,0 C 92.5,8.5 97.5,8.5 100.0,0 C 102.5,8.5 107.5,8.5 110.0,0 C 112.5,8.5 117.5,8.5 120.0,0 C 122.5,8.5 127.5,8.5 130.0,0 C 132.5,8.5 137.5,8.5 140.0,0 C 142.5,8.5 147.5,8.5 150.0,0 C 152.5,8.5 157.5,8.5 160.0,0 C 162.5,8.5 167.5,8.5 170.0,0 C 172.5,8.5 177.5,8.5 180.0,0 C 182.5,8.5 187.5,8.5 190.0,0 C 192.5,8.5 197.5,8.5 200.0,0 C 202.5,8.5 207.5,8.5 210.0,0 C 212.5,8.5 217.5,8.5 220.0,0 C 222.5,8.5 227.5,8.5 230.0,0 C 232.5,8.5 237.5,8.5 240.0,0 C 242.5,8.5 247.5,8.5 250.0,0 C 252.5,8.5 257.5,8.5 260.0,0 C 262.5,8.5 267.5,8.5 270.0,0 C 272.5,8.5 277.5,8.5 280.0,0 C 282.5,8.5 287.5,8.5 290.0,0 C 292.5,8.5 297.5,8.5 300.0,0 C 302.5,8.5 307.5,8.5 310.0,0 C 312.5,8.5 317.5,8.5 320.0,0 L 320,0 L 0,0 Z" fill="#F8F6F3" />
             </svg>
           </div>
 
